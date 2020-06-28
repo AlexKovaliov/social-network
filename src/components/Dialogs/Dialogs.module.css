@@ -1,0 +1,32 @@
+.header {
+    grid-area: h;
+    /*background-color: white;*/
+}
+
+.header img {
+    width: 64px;
+}
+
+.dialogs {
+    color: white;
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItems {
+    padding: 10px;
+}
+
+.dialogsItems .active {
+    color: gold;
+}
+
+.dialog {
+}
+
+.messages {
+    padding: 10px;
+}
+
+.message {
+}
