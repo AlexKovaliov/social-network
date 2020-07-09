@@ -5,8 +5,7 @@ import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 
 type PropsTypeDialogs = {
-    id: number
-    name: string
+
 }
 
 const Dialogs = (props: PropsTypeDialogs) => {
