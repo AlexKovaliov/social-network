@@ -1,8 +1,11 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {myPostsType} from "../../../App";
 
+
+export type myPostsType = {
+    posts: Array<postsType>
+}
 
 export type  postsType = {
     id: number

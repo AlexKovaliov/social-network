@@ -1,9 +1,7 @@
 import React from 'react';
 import s from './Profile.module.css';
-import MyPosts, {postsType} from "./MyPosts/MyPosts";
+import MyPosts, {myPostsType, postsType} from "./MyPosts/MyPosts";
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
-import {myPostsType} from "../../App";
-
 
 
 

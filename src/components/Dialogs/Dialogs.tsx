@@ -2,9 +2,13 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {NavLink} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogsItem";
-import Message from "./Message/Message";
-import {dialogsType, myPostsType} from "../../App";
+import Message, {propsTypeMessage} from "./Message/Message";
 
+
+type dialogsType = {
+    dialogs: Array<propsTypeDialogs>
+    messages: Array<propsTypeMessage>
+}
 
 export type propsTypeDialogs = {
     id: number
