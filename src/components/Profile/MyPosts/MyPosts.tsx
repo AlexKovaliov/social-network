@@ -7,7 +7,14 @@ import {ProfilePageType} from "../../../redux/state";
 const MyPosts = (props: ProfilePageType) => {
 
 
-    let postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    const postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+
+    const newPostElement = React.createRef<HTMLTextAreaElement>();
+
+    let addPost = () => {
+        let text = newPostElement.current?.value;
+        }
+
 
     return (
         <div className={s.postsBlock}>
@@ -15,11 +22,11 @@ const MyPosts = (props: ProfilePageType) => {
             <div>
 
                 <div>
-                    <textarea>Text me</textarea>
+                    <textarea ref={newPostElement}>Text me</textarea>
                 </div>
 
                 <div>
-                    <button>Add post</button>
+                    <button onClick={ addPost }>Add post</button>
                 </div>
             </div>
 
