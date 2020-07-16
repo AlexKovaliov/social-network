@@ -26,7 +26,7 @@ const MyPosts = (props: ProfilePageType & AppPropsType) => {
             <div>
 
                 <div>
-                    <textarea ref={newPostElement}>Text me</textarea>
+                    <textarea ref={newPostElement} placeholder="Text me"></textarea>
                 </div>
 
                 <div>
