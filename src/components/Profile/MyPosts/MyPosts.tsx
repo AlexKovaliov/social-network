@@ -1,20 +1,24 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ProfilePageType} from "../../../redux/state";
+import {PostType, ProfilePageType} from "../../../redux/state";
 
+type AppPropsType = {
+    posts: Array<PostType>,
+    addPost: (message: string) => void
+}
 
-const MyPosts = (props: ProfilePageType) => {
-
+const MyPosts = (props: ProfilePageType & AppPropsType) => {
 
     const postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let addPost = () => {
-        let text = newPostElement.current?.value;
+    const addPost = () => {
+        if (newPostElement.current) {
+            props.addPost(newPostElement.current.value)
         }
-
+    }
 
     return (
         <div className={s.postsBlock}>
@@ -26,7 +30,7 @@ const MyPosts = (props: ProfilePageType) => {
                 </div>
 
                 <div>
-                    <button onClick={ addPost }>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
             </div>
 

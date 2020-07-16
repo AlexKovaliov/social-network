@@ -8,10 +8,14 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {BrowserRouter, Route} from "react-router-dom"
-import {MainType} from './redux/state';
+import {MainType, RootStateType} from './redux/state';
 
+type AppPropsType = {
+    state: RootStateType,
+    addPost: (message: string) => void
+}
 
-const App = (props: MainType) => {
+const App = (props: AppPropsType) => {
 
     return (
         <BrowserRouter>
@@ -21,7 +25,8 @@ const App = (props: MainType) => {
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs' render={() => <Dialogs dialogs={props.state.dialogsPage.dialogs}
                                                                   messages={props.state.messagesPage.messages}/>}/>
-                    <Route path='/profile' render={() => <Profile posts={props.state.profilePage.posts}/>}/>
+                    <Route path='/profile'
+                           render={() => <Profile posts={props.state.profilePage.posts} addPost={props.addPost}/>}/>
                     <Route path='/profile' render={() => <News/>}/>
                     <Route path='/profile' render={() => <Music/>}/>
                     <Route path='/profile' render={() => <Settings/>}/>

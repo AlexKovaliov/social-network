@@ -5,7 +5,19 @@ import {MessageType} from "../../../redux/state";
 
 const Message = (props: MessageType) => {
     return (
-        <div className={s.dialog}>{props.message}</div>
+        <div>
+            <div>
+                <div>
+                    <textarea>Text me</textarea>
+                </div>
+
+                <div>
+                    <button>Send message</button>
+                </div>
+            </div>
+
+            <div className={s.dialog}>{props.message}</div>
+        </div>
     )
 }
 
