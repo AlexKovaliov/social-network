@@ -3,20 +3,29 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {PostType, ProfilePageType} from "../../../redux/state";
 
-type AppPropsType = {
-    posts: Array<PostType>,
+type PropsType = {
+    profilePage: ProfilePageType
     addPost: (message: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
-const MyPosts = (props: ProfilePageType & AppPropsType) => {
+const MyPosts = (props: PropsType) => {
 
-    const postsElement = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    const postsElement = props.profilePage.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const addPost = () => {
         if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
+            let text = newPostElement.current.value;
+            props.addPost(text);
+        }
+    }
+
+    let onPostChange = () => {
+        if (newPostElement.current) {
+            let text = newPostElement.current.value;
+            props.updateNewPostText(text);
         }
     }
 
@@ -26,7 +35,10 @@ const MyPosts = (props: ProfilePageType & AppPropsType) => {
             <div>
 
                 <div>
-                    <textarea ref={newPostElement} placeholder="Text me"></textarea>
+                    <textarea ref={newPostElement}
+                              onChange={onPostChange}
+                              value={props.profilePage.newPostText}
+                    />
                 </div>
 
                 <div>
