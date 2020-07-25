@@ -1,4 +1,4 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = () => {}
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -35,9 +35,11 @@ export type  PostType = {
     likesCount: number
 }
 
-export type MainType = {
+/*export type MainType = {
     state: RootStateType
-}
+}*/
+
+
 
 let state: RootStateType = {
     profilePage: {
@@ -70,18 +72,23 @@ let state: RootStateType = {
 }
 
 export const addPost = () => {
-    const newPost: PostType = {id: 5,
+    const newPost: PostType = {
+        id: 5,
         message: state.profilePage.newPostText,
-        likesCount: 0};
+        likesCount: 0
+    };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = "";
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
-    rerenderEntireTree(state);
+    rerenderEntireTree();
 }
 
+export const subscribe = (observer:(state:RootStateType) => void) => {
+    rerenderEntireTree = observer; //observer (рус. наблюдатель) - это патерн
+}
 
 export default state;
