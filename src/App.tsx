@@ -8,11 +8,11 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {BrowserRouter, Route} from "react-router-dom"
-import {RootStateType} from './redux/state';
+import {PostType, RootStateType} from './redux/state';
 
 type AppPropsType = {
     state: RootStateType,
-    addPost: (message: string) => void
+    addPost: () => void
     updateNewPostText: (newText: string) => void
 }
 
