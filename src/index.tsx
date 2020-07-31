@@ -15,8 +15,7 @@ const rerenderEntireTree = (state: RootStateType) => {
 
             <App
                 state={store.getState()}
-                addPost={store.addPost.bind(store)}
-                updateNewPostText={store.updateNewPostText.bind(store)}
+                dispatch={store.dispatch.bind(store)} // bind указывает на то чтобы данные брались именно из store
             />
 
         </React.StrictMode>,

@@ -36,10 +36,12 @@ export type  PostType = {
 export type StoreType = {
     _state: RootStateType
     _callSubscriber: () => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+
     subscribe: (observer: any) => void
     getState: () => RootStateType
+
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 
 // OOP
@@ -73,28 +75,32 @@ export let store: StoreType = {
             ]
         },
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
     },
-    addPost() {
-        const newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._callSubscriber();
-    },
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber();
+
+    getState() {
+        return this._state;
     },
     subscribe(observer) {
         this._callSubscriber = observer; //observer (рус. наблюдатель) - это патерн
     },
+
+    // изменяет state
+    dispatch(action: ProfilePageType) {           //action объект который описывает какое действие совершить
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = "";
+            this._callSubscriber();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber();
+        }
+    }
 }
 
 
