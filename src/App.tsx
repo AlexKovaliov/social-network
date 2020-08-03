@@ -8,24 +8,25 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {BrowserRouter, Route} from "react-router-dom"
-import {PostType, RootStateType} from './redux/state';
+import {ActionPropsType, RootStateType, StoreType} from './redux/state';
 
 type AppPropsType = {
     state: RootStateType,
-    /*addPost: () => void
-    updateNewPostText: (newText: string) => void*/
+    dispatch: (action: ActionPropsType) => void
+    store: StoreType
 }
 
 const App = (props: AppPropsType) => {
 
     return (
-        <BrowserRouter>
+        <BrowserRouter>  // должен быть только один, подчиняет себе переключение url
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs'
-                           render={() => <Dialogs
+                    <Route path='/dialogs'                     // загружает callback котороый в ней передали
+                           render={() => <Dialogs// route вызывает функцию когда url совпадает
+                               store={props.store}
                                dialogs={props.state.dialogsPage.dialogs}
                                messages={props.state.messagesPage.messages}
                            />}

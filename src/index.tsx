@@ -7,7 +7,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {RootStateType} from './redux/state';
 
-
+// функция которая отрисовывает всё дерево
 const rerenderEntireTree = (state: RootStateType) => {
 
     ReactDOM.render(
@@ -16,6 +16,7 @@ const rerenderEntireTree = (state: RootStateType) => {
             <App
                 state={store.getState()}
                 dispatch={store.dispatch.bind(store)} // bind указывает на то чтобы данные брались именно из store
+                store={store}
             />
 
         </React.StrictMode>,
@@ -25,6 +26,6 @@ const rerenderEntireTree = (state: RootStateType) => {
 
 rerenderEntireTree(store.getState())
 
-store.subscribe(rerenderEntireTree)
+store.subscribe(rerenderEntireTree) //вызывает перерисовку всей страницы
 
 serviceWorker.unregister();

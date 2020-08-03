@@ -9,12 +9,15 @@ export type ProfilePageType = {
     newPostText: string
 }
 
+
+
 export type DialogsPageType = {
     dialogs: Array<DialogItemType>
 }
 
 export type MessagesPageType = {
     messages: Array<MessageType>
+    newMessageBody: string
 }
 
 export type DialogItemType = {
@@ -39,13 +42,21 @@ export type StoreType = {
 
     subscribe: (observer: any) => void
     getState: () => RootStateType
-
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionPropsType) => void
 }
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
+const SEND_MESSAGE = 'SEND_MESSAGE'
+
+
+export type ActionPropsType = {
+    message: string
+    newText: string
+    type: string
+    body: string
+}
 
 
 // OOP
@@ -76,7 +87,8 @@ export let store: StoreType = {
                 {id: 4, message: "Yo"},
                 {id: 5, message: "Welcome"},
                 {id: 6, message: "Buy"},
-            ]
+            ],
+            newMessageBody: ""
         },
     },
     _callSubscriber() {
@@ -89,8 +101,8 @@ export let store: StoreType = {
         this._callSubscriber = observer; //observer (рус. наблюдатель) - это патерн
     },
 
-    // изменяет state
-    dispatch(action: ProfilePageType) {           //action объект который описывает какое действие совершить
+    // изменяет state через action
+    dispatch(action) {           //action объект который описывает какое действие совершить
         if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,
@@ -103,12 +115,21 @@ export let store: StoreType = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber();
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.messagesPage.newMessageBody = action.body;
+            this._callSubscriber();
+        } else if (action.type === SEND_MESSAGE) {
+            let body = this._state.messagesPage.newMessageBody;
+            this._state.messagesPage.newMessageBody = "";
+            this._state.messagesPage.messages.push({id: 6, message: body});
+            this._callSubscriber();
         }
     }
 }
-
+  // action creators которые пользователь UI будут использовать чтобы создовать action
 export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
-
-
-
+export const updateNewPostTextActionCreator = (text: string) =>
+    ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const updateNewMessageBodyActionCreator = (body: string) =>
+    ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
