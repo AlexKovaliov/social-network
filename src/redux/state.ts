@@ -1,7 +1,11 @@
+import profileReduser from "./profile-reducer";
+import dialogsReduser from "./dialogs-reducer";
+
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    messagesPage: MessagesPageType
+
+    /*messagesPage: MessagesPageType*/
 }
 
 export type ProfilePageType = {
@@ -10,15 +14,16 @@ export type ProfilePageType = {
 }
 
 
-
 export type DialogsPageType = {
     dialogs: Array<DialogItemType>
-}
-
-export type MessagesPageType = {
     messages: Array<MessageType>
     newMessageBody: string
 }
+
+/*export type MessagesPageType = {
+    messages: Array<MessageType>
+    newMessageBody: string
+}*/
 
 export type DialogItemType = {
     id: number
@@ -44,12 +49,6 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionPropsType) => void
 }
-
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
-const SEND_MESSAGE = 'SEND_MESSAGE'
-
 
 export type ActionPropsType = {
     message: string
@@ -77,9 +76,8 @@ export let store: StoreType = {
                 {id: 4, name: 'Sasha'},
                 {id: 5, name: 'Victor'},
                 {id: 6, name: 'Valera'}
-            ]
-        },
-        messagesPage: {
+            ],
+
             messages: [
                 {id: 1, message: "Hi"},
                 {id: 2, message: "How is your it-kamasutra?"},
@@ -91,6 +89,7 @@ export let store: StoreType = {
             newMessageBody: ""
         },
     },
+
     _callSubscriber() {
     },
 
@@ -103,33 +102,11 @@ export let store: StoreType = {
 
     // изменяет state через action
     dispatch(action) {           //action объект который описывает какое действие совершить
-        if (action.type === ADD_POST) {
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber();
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber();
-        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
-            this._state.messagesPage.newMessageBody = action.body;
-            this._callSubscriber();
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.messagesPage.newMessageBody;
-            this._state.messagesPage.newMessageBody = "";
-            this._state.messagesPage.messages.push({id: 6, message: body});
-            this._callSubscriber();
-        }
+
+        this._state.profilePage = profileReduser(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action);
+        this._callSubscriber();
     }
 }
-  // action creators которые пользователь UI будут использовать чтобы создовать action
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text: string) =>
-    ({type: UPDATE_NEW_POST_TEXT, newText: text})
-export const updateNewMessageBodyActionCreator = (body: string) =>
-    ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
+
+

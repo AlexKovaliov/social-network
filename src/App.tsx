@@ -28,7 +28,8 @@ const App = (props: AppPropsType) => {
                            render={() => <Dialogs// route вызывает функцию когда url совпадает
                                store={props.store}
                                dialogs={props.state.dialogsPage.dialogs}
-                               messages={props.state.messagesPage.messages}
+                               messages={props.state.dialogsPage.messages}
+                               newMessageBody={props.state.dialogsPage.newMessageBody}
                            />}
                     />
 
