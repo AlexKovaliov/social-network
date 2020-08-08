@@ -1,4 +1,4 @@
-import {DialogsPageType, ActionPropsType} from "./state";
+import {DialogsPageType, ActionPropsType} from "./store";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
@@ -8,8 +8,29 @@ const SEND_MESSAGE = 'SEND_MESSAGE'
     action: ActionPropsType
 }*/
 
+let initialState: DialogsPageType = {
+    dialogs: [
+        {id: 1, name: 'Dimych'},
+        {id: 2, name: 'Andrey'},
+        {id: 3, name: 'Sveta'},
+        {id: 4, name: 'Sasha'},
+        {id: 5, name: 'Victor'},
+        {id: 6, name: 'Valera'}
+    ],
+
+    messages: [
+        {id: 1, message: "Hi"},
+        {id: 2, message: "How is your it-kamasutra?"},
+        {id: 3, message: "Yo"},
+        {id: 4, message: "Yo"},
+        {id: 5, message: "Welcome"},
+        {id: 6, message: "Buy"},
+    ],
+    newMessageBody: ""
+};
+
 const dialogsReduser =
-    (state: DialogsPageType, action: ActionPropsType) => {
+    (state = initialState, action: ActionPropsType) => {
         switch (action.type) {
             case UPDATE_NEW_MESSAGE_BODY:
                 state.newMessageBody = action.body;
@@ -24,8 +45,16 @@ const dialogsReduser =
         }
     }
 // action creators которые пользователь UI будут использовать чтобы создовать action
-export const updateNewMessageBodyActionCreator = (body: string) =>
+export type UpdateNewMessageBodyActionCreatorType = {
+    type: typeof UPDATE_NEW_MESSAGE_BODY
+    body: string
+}
+export const updateNewMessageBodyActionCreator = (body: string): UpdateNewMessageBodyActionCreatorType =>
     ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
+
+export type SendMessageActionCreatorType = {
+    type: typeof SEND_MESSAGE
+}
+export const sendMessageActionCreator = (): SendMessageActionCreatorType => ({type: SEND_MESSAGE})
 
 export default dialogsReduser;

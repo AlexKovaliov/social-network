@@ -1,13 +1,17 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ActionPropsType, ProfilePageType,} from "../../../redux/state";
-import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/profile-reducer';
+import {ActionPropsType, ProfilePageType, StoreType,} from "../../../redux/store";
+import {
+    addPostActionCreator,
+    AddPostActionCreatorType,
+    updateNewPostTextActionCreator, UpdateNewPostTextActionCreatorType
+} from '../../../redux/profile-reducer';
 
 
 type PropsType = {
     profilePage: ProfilePageType
-    dispatch: (action: ActionPropsType) => void
+    dispatch: (action: ActionPropsType | AddPostActionCreatorType | UpdateNewPostTextActionCreatorType) => void
 }
 
 
