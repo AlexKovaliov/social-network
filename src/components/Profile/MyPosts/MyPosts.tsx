@@ -1,11 +1,10 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ActionPropsType, ProfilePageType, StoreType,} from "../../../redux/store";
+import {ActionPropsType, ProfilePageType} from "../../../redux/store";
 import {
-    addPostActionCreator,
     AddPostActionCreatorType,
-    updateNewPostTextActionCreator, UpdateNewPostTextActionCreatorType
+    UpdateNewPostTextActionCreatorType
 } from '../../../redux/profile-reducer';
 
 
@@ -17,19 +16,19 @@ type PropsType = {
 
 const MyPosts = (props: PropsType) => {
 
-    const postsElement = props.profilePage.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    const postsElement =
+        props.profilePage.posts.map(p =>
+            <Post message={p.message} likesCount={p.likesCount}/>)
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const addPost = () => {
-        props.dispatch(addPostActionCreator());
+    const onAddPost = () => {
+        props.addPost();
     }
 
     let onPostChange = () => {
-        if (newPostElement.current) {
-            let text = newPostElement.current.value;
-            props.dispatch(updateNewPostTextActionCreator(text))
-        }
+        let text = newPostElement.current.value;
+        props.updateNewPostText(text);
     }
 
     return (
@@ -45,7 +44,7 @@ const MyPosts = (props: PropsType) => {
                 </div>
 
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
 

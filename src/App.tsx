@@ -9,6 +9,7 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {BrowserRouter, Route} from "react-router-dom"
 import {ActionPropsType, RootStateType, StoreType} from './redux/store';
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
     state: RootStateType,
@@ -24,20 +25,15 @@ const App = (props: AppPropsType) => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs'                     // загружает callback котороый в ней передали
-                           render={() => <Dialogs// route вызывает функцию когда url совпадает
-                               /*store={props.store}*/
-                               dialogs={props.state.dialogsPage.dialogs}
-                               messages={props.state.dialogsPage.messages}
-                               newMessageBody={props.state.dialogsPage.newMessageBody}
-                               dispatch={props.dispatch}
+                    <Route path='/dialogs'         // загружает callback котороый в ней передали
+                           render={() => <DialogsContainer  // route вызывает функцию когда url совпадает
+                               store={props.store}
                            />}
                     />
 
                     <Route path='/profile'
                            render={() => <Profile
-                               profilePage={props.state.profilePage}
-                               dispatch={props.dispatch}
+                               store={props.store}
                            />}
                     />
                     <Route path='/profile' render={() => <News/>}/>
