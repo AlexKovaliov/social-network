@@ -11,6 +11,8 @@ import {
 type PropsType = {
     profilePage: ProfilePageType
     dispatch: (action: ActionPropsType | AddPostActionCreatorType | UpdateNewPostTextActionCreatorType) => void
+    addPost: () => void
+    updateNewPostText: (text: string) => void
 }
 
 

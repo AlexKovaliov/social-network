@@ -1,5 +1,5 @@
 import React from 'react';
-import {DialogItemType, MessageType, StoreType} from "../../redux/store";
+import {DialogsPageType, StoreType, RootStateType} from "../../redux/store";
 import {
     sendMessageActionCreator,
     updateNewMessageBodyActionCreator,
@@ -7,32 +7,36 @@ import {
     UpdateNewMessageBodyActionCreatorType
 } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import {connect} from "react-redux";
 
 
 type PropsType = {
+    dialogsPage: DialogsPageType
+    sendMessage: () => void
+    updateNewMessageBody: (body: string) => void
     store: StoreType
-    dialogs: Array<DialogItemType>
-    messages: Array<MessageType>
-    newMessageBody: string
     dispatch: (action: /*ActionPropsType*/ | SendMessageActionCreatorType | UpdateNewMessageBodyActionCreatorType) => void
 }
 
-const DialogsContainer = (props: PropsType) => {
 
-    let state = props.store.getState().dialogsPage;
-
-    let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageActionCreator())
+let mapStateToProps = (state: RootStateType) => {
+    return {
+        dialogsPage: state.dialogsPage
     }
-
-    let onNewMessageChange = (body) => {
-        props.store.dispatch(updateNewMessageBodyActionCreator(body))
-    }
-
-    return (<Dialogs updateNewMessageBody={onNewMessageChange}
-                     sendMessage={onSendMessageClick}
-                     dialogsPage={state}
-    />)
 }
+
+let mapDispatchToProps = (dispatch: (action: UpdateNewMessageBodyActionCreatorType | SendMessageActionCreatorType) => void) => {
+    return {
+        updateNewMessageBody: (body: string) => {
+            dispatch(updateNewMessageBodyActionCreator(body));
+        },
+        sendMessage: () => {
+            dispatch(sendMessageActionCreator())
+        },
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+
 // контейнерная компонента всего лишь обвёртка над презентационной компонентой
 export default DialogsContainer;
