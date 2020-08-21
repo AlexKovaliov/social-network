@@ -1,4 +1,4 @@
-import profileReduser, {AddPostActionCreatorType, UpdateNewPostTextActionCreatorType} from "./profile-reducer";
+import profileReducer, {AddPostActionCreatorType, UpdateNewPostTextActionCreatorType} from "./profile-reducer";
 import dialogsReduser, {SendMessageActionCreatorType, UpdateNewMessageBodyActionCreatorType} from "./dialogs-reducer";
 
 export type RootStateType = {
@@ -99,7 +99,7 @@ export let store: StoreType = {
 
     // изменяет state через action
     dispatch(action) {           //action объект который описывает какое действие совершить
-        this._state.profilePage = profileReduser(this._state.profilePage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action);
         this._callSubscriber();
     }

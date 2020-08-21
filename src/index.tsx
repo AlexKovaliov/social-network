@@ -8,26 +8,16 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 
 
-// функция которая отрисовывает всё дерево
-const rerenderEntireTree = (state: StateType) => {
+ReactDOM.render(
+    <React.StrictMode>
+        <Provider store={store}>
 
-    ReactDOM.render(
-        <React.StrictMode>
-            <Provider store={store}>
+            <App/> // bind указывает на то чтобы данные брались именно из store
 
-                <App /> // bind указывает на то чтобы данные брались именно из store
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
 
-            </Provider>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
-
-rerenderEntireTree(store.getState())
-
-store.subscribe(() => {
-    let state = store.getState();
-    rerenderEntireTree(state);
-}); //вызывает перерисовку всей страницы
 
 serviceWorker.unregister();

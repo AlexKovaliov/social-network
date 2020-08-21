@@ -16,7 +16,7 @@ type AppPropsType = {
     dispatch: (action: ActionPropsType) => void
     /*store: StoreType*/
 }
-
+,,
 const App = (props: AppPropsType) => {
 
     return (
