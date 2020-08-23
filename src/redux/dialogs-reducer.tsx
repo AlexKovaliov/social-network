@@ -31,21 +31,22 @@ let initialState: DialogsPageType = {
 
 const dialogsReduser =
     (state = initialState, action: ActionPropsType) => {
+
         switch (action.type) {
 
-            case UPDATE_NEW_MESSAGE_BODY: {
-                let stateCopy = {...state};
-                stateCopy.newMessageBody = action.body;
-                return stateCopy;
-            }
+            case UPDATE_NEW_MESSAGE_BODY:
+                return {
+                    ...state,
+                    newMessageBody: action.body
+                };
 
-            case SEND_MESSAGE: {
-                let stateCopy = {...state};
-                let body = stateCopy.newMessageBody;
-                stateCopy.newMessageBody = "";
-                stateCopy.messages.push({id: 6, message: body});
-                return stateCopy;
-            }
+            case SEND_MESSAGE:
+                let body = state.newMessageBody;
+                return {
+                    ...state,
+                    newMessageBody: "",
+                    messages: [...state.messages, {id: 6, message: body}]
+                };
 
             default:
                 return state;
@@ -56,7 +57,7 @@ export type UpdateNewMessageBodyActionCreatorType = {
     type: typeof UPDATE_NEW_MESSAGE_BODY
     body: string
 }
-export const updateNewMessageBodyActionCreator = (body: string): UpdateNewMessageBodyActionCreatorType =>
+export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyActionCreatorType =>
     ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
 
 export type SendMessageActionCreatorType = {

@@ -5,7 +5,6 @@ import Message, {} from "./Message/Message";
 import {DialogItemType, MessageType, DialogsPageType} from "../../redux/store";
 
 
-
 type PropsType = {
     /* store: StoreType*/
     dialogsPage: DialogsPageType
@@ -17,14 +16,13 @@ type PropsType = {
 }
 
 
-
 const Dialogs = (props: PropsType) => {
 
     let state = props.dialogsPage;
 
-    let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>);
+    let dialogsElements = props.dialogs.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
 
-    let messagesElement = props.messages.map(m => <Message message={m.message} id={m.id}/>);
+    let messagesElement = props.messages.map(m => <Message message={m.message} key={m.id} id={m.id}/>);
     let newMessageBody = props.newMessageBody;
 
     let onSendMessageClick = () => {

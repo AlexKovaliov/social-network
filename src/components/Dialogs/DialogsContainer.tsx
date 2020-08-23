@@ -2,7 +2,7 @@ import React from 'react';
 import {DialogsPageType, StoreType, RootStateType} from "../../redux/store";
 import {
     sendMessageActionCreator,
-    updateNewMessageBodyActionCreator,
+    updateNewMessageBodyCreator,
     SendMessageActionCreatorType,
     UpdateNewMessageBodyActionCreatorType
 } from "../../redux/dialogs-reducer";
@@ -28,7 +28,7 @@ let mapStateToProps = (state: RootStateType) => {
 let mapDispatchToProps = (dispatch: (action: UpdateNewMessageBodyActionCreatorType | SendMessageActionCreatorType) => void) => {
     return {
         updateNewMessageBody: (body: string) => {
-            dispatch(updateNewMessageBodyActionCreator(body));
+            dispatch(updateNewMessageBodyCreator(body));
         },
         sendMessage: () => {
             dispatch(sendMessageActionCreator())
