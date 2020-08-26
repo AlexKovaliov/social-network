@@ -36,7 +36,7 @@ let mapDispatchToProps = (dispatch: (action: UpdateNewMessageBodyActionCreatorTy
     }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect<any, any, any, any>(mapStateToProps, mapDispatchToProps)(Dialogs);
 
-// контейнерная компонента всего лишь обвёртка над презентационной компонентой
+/*контейнерная компонента всего лишь обвёртка над презентационной компонентой*/
 export default DialogsContainer;

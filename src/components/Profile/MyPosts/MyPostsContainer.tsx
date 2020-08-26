@@ -27,6 +27,6 @@ let mapDispatchToProps = (dispatch: (action: AddPostActionCreatorType | UpdateNe
     }
 }
 
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+const MyPostsContainer = connect<any, any, any, RootStateType>(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer

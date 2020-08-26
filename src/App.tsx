@@ -12,28 +12,26 @@ import {ActionPropsType, RootStateType, StoreType} from './redux/store';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
-    state: RootStateType,
-    dispatch: (action: ActionPropsType) => void
+
     /*store: StoreType*/
 }
 
 const App = (props: AppPropsType) => {
-
+    /*BrowserRouter должен быть только один, подчиняет себе переключение url*/
     return (
-        <BrowserRouter> // должен быть только один, подчиняет себе переключение url
+        <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'         // загружает callback котороый в ней передали
                            render={() => <DialogsContainer  // route вызывает функцию когда url совпадает
-                               store={props.store}
                            />}
                     />
 
                     <Route path='/profile'
                            render={() => <Profile
-                               store={props.store}
+
                            />}
                     />
                     <Route path='/profile' render={() => <News/>}/>

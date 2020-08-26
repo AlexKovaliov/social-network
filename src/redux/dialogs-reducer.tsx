@@ -52,7 +52,7 @@ const dialogsReduser =
                 return state;
         }
     }
-// action creators которые пользователь UI будут использовать чтобы создовать action
+/* action creators которые пользователь UI будут использовать чтобы создовать action*/
 export type UpdateNewMessageBodyActionCreatorType = {
     type: typeof UPDATE_NEW_MESSAGE_BODY
     body: string

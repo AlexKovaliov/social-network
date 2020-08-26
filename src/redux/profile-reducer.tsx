@@ -40,7 +40,7 @@ const profileReducer = (state = initialState, action: ActionPropsType) => {
     }
 }
 
-// action creators которые пользователь UI будут использовать чтобы создовать action
+/*action creators которые пользователь UI будут использовать чтобы создовать action*/
 export type AddPostActionCreatorType = {
     type: typeof ADD_POST
 }
