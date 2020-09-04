@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Post.module.css';
-import {type} from "os";
+
 
 type PropsTypePost = {
     likesCount: number

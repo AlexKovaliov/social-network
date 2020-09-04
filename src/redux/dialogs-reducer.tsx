@@ -29,7 +29,7 @@ let initialState: DialogsPageType = {
     newMessageBody: ""
 };
 
-const dialogsReduser =
+const dialogsReducer =
     (state = initialState, action: ActionPropsType) => {
 
         switch (action.type) {
@@ -65,4 +65,4 @@ export type SendMessageActionCreatorType = {
 }
 export const sendMessageActionCreator = (): SendMessageActionCreatorType => ({type: SEND_MESSAGE})
 
-export default dialogsReduser;
+export default dialogsReducer;
