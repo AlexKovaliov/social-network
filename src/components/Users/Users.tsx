@@ -27,7 +27,8 @@ export let Users = (props: UsersComponentsPropsType) => {
                             {u.followed ?
                                 <button onClick={() => {
                                     props.unfollow(u.id)
-                                }}>Unfollow</button>
+                                }}>Unfollow
+                                </button>
                                 : <button onClick={() => {
                                     props.follow(u.id)
                                 }}>Follow</button>}

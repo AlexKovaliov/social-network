@@ -1,8 +1,9 @@
 import {combineReducers, createStore} from "redux";
-import profileReducer from "./profile-reducer"
+import profileReducer, { ProfilePageType } from "./profile-reducer"
 import dialogsReducer from "./dialogs-reducer"
-import {DialogsPageType, ProfilePageType} from "./store";
+import {DialogsPageType} from "./store";
 import {usersReducer, UsersType} from "./users-reducer";
+
 
 export type GlobalStateType = {
     profilePage: ProfilePageType

@@ -10,7 +10,6 @@ const ProfileInfo = () => {
                     alt="top_picture"/>
             </div>
             <div className={s.descriptionBlock}>
-                ava+description
             </div>
 
         </div>

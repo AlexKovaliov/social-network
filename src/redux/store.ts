@@ -1,5 +1,12 @@
-import profileReducer, {AddPostActionCreatorType, UpdateNewPostTextActionCreatorType} from "./profile-reducer";
-import dialogsReducer, {SendMessageActionCreatorType, UpdateNewMessageBodyActionCreatorType} from "./dialogs-reducer";
+import {
+    AddPostActionCreatorType,
+    ProfilePageType,
+    UpdateNewPostTextActionCreatorType
+} from "./profile-reducer";
+import {SendMessageActionCreatorType, UpdateNewMessageBodyActionCreatorType} from "./dialogs-reducer";
+import {DialogItemType} from "../components/Dialogs/DialogItem/DialogsItem";
+import { MessageType } from "../components/Dialogs/Message/Message";
+
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -7,11 +14,6 @@ export type RootStateType = {
 
 
     /*messagesPage: MessagesPageType*/
-}
-
-export type ProfilePageType = {
-    posts: Array<PostType>
-    newPostText: string
 }
 
 
@@ -26,21 +28,8 @@ export type DialogsPageType = {
     newMessageBody: string
 }*/
 
-export type DialogItemType = {
-    id: number
-    name: string
-}
 
-export type MessageType = {
-    id: number
-    message: string
-}
 
-export type  PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
 
 export type StoreType = {
     _state: RootStateType
@@ -56,6 +45,7 @@ export type ActionPropsType = SendMessageActionCreatorType | UpdateNewMessageBod
 
 
 // OOP
+/*
 export let store: StoreType = {
     _state: {
         profilePage: {
@@ -103,4 +93,4 @@ export let store: StoreType = {
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._callSubscriber();
     }
-}
+}*/

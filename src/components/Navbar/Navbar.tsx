@@ -2,10 +2,11 @@ import React from 'react';
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 
+//NavLink просто меняет url в браузере
 const Navbar = () => {
     return <nav className={s.nav}>
         <div className={` ${s.item} ${s.active} `}>
-            <NavLink to="/profile" activeClassName={s.active}>Profile</NavLink>  //NavLink просто меняет url в браузере
+            <NavLink to="/profile" activeClassName={s.active}>Profile</NavLink>
         </div>
         <div className={s.item}>
             <NavLink to="/dialogs" activeClassName={s.active}>Messages</NavLink>

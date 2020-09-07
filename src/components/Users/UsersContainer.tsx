@@ -15,10 +15,10 @@ let mapStateToProps = (state: GlobalStateType) => {
 // function for callbacks //!!!!!!!! fix userId: any
 let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
     return {
-        follow: (userId: any) => {
+        follow: (userId: string) => {
             dispatch(followAC(userId))
         },
-        unfollow: (userId: any) => {
+        unfollow: (userId: string) => {
             dispatch(unfollowAC(userId))
         },
         setUsers: (users: Array<UsersInformationType>) => {

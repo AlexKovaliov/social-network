@@ -9,6 +9,7 @@ import MyPosts from "./MyPosts";
 import {connect} from 'react-redux';
 
 
+
 let mapStateToProps = (state: RootStateType) => {
     return {
         posts: state.profilePage.posts,

@@ -1,4 +1,4 @@
-import {ActionPropsType, ProfilePageType} from "./store";
+
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'

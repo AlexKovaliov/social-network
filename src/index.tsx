@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import {GlobalStateType, store} from "./redux/redux-store";
+import {store} from "./redux/redux-store";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -12,7 +12,8 @@ ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
 
-            <App /> // bind указывает на то чтобы данные брались именно из store
+            <App/>
+
 
         </Provider>
     </React.StrictMode>,
@@ -21,3 +22,4 @@ ReactDOM.render(
 
 
 serviceWorker.unregister();
+// bind указывает на то чтобы данные брались именно из store

@@ -1,8 +1,15 @@
-import {ActionPropsType, ProfilePageType} from "./store";
+import {ActionPropsType} from "./store";
+import {PostType} from "../components/Profile/MyPosts/MyPosts";
+
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
+
+export type ProfilePageType = {
+    newPostText: string
+    posts: Array<PostType>
+}
 
 export let initialState: ProfilePageType = {
     posts: [
