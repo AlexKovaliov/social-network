@@ -1,6 +1,8 @@
 import React from 'react';
 import {UsersInformationType} from "../../redux/users-reducer";
 import styles from './Users.module.css'
+import axios from "axios";
+import userPhoto from "../../assets/images/userPhoto.png"
 
 type UsersComponentsPropsType = {
     users: Array<UsersInformationType>
@@ -11,7 +13,10 @@ type UsersComponentsPropsType = {
 
 export let Users = (props: UsersComponentsPropsType) => {
     if (props.users.length === 0) {
-        props.setUsers([])
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items)
+            }
+        )
     }
 
     return (
@@ -20,7 +25,8 @@ export let Users = (props: UsersComponentsPropsType) => {
                 props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photoUrl} className={styles.userPhoto}/>
+                            <img src={u.photos.small !== null ? u.photos.small : userPhoto}
+                                 className={styles.userPhoto}/>
                         </div>
 
                         <div>
@@ -37,7 +43,7 @@ export let Users = (props: UsersComponentsPropsType) => {
 
                         <span>
                         <span>
-                            <div>{u.fullName}</div>
+                            <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
 
