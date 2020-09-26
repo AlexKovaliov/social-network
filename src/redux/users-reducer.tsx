@@ -5,7 +5,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
 export type UsersInformationType = {
-    id: number,
+    id: string,
     photos: any,
     followed: boolean,
     name: string,
@@ -22,7 +22,7 @@ export type ActionType = FollowACType | UnfollowACType | SetUsersACType
 export let initialState: UsersType = {
     users: [
         {
-            id: 1,
+            id: "1",
             photos: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Dmitry_Nagiev_2017_3.jpg",
             followed: false,
             name: 'Dmitry',
@@ -30,7 +30,7 @@ export let initialState: UsersType = {
             location: {city: 'Minsk', country: 'Belarus'}
         },
         {
-            id: 2,
+            id: "2",
             photos: "https://vignette.wikia.nocookie.net/zlodei/images/0/02/485843-1.jpg/revision/latest?cb=20200404093008&path-prefix=ru",
             followed: true,
             name: 'Sasha',
@@ -38,7 +38,7 @@ export let initialState: UsersType = {
             location: {city: 'Vitebsk', country: 'Belarus'}
         },
         {
-            id: 3,
+            id: "3",
             photos: "https://lh3.googleusercontent.com/proxy/hcKW7l9IYlrlyhTNnrbJBqYdOYfFENoVSdSvHlrxrNsuQpm23rxw7ZdZ5ygTWGmoqfKVzuyIq5yVFyf84OGIS4A3GfgVHHoFn2tAnRLRZErWdFVz",
             followed: false,
             name: 'Sveta',
@@ -46,7 +46,7 @@ export let initialState: UsersType = {
             location: {city: 'Mogilev', country: 'Belarus'}
         },
         {
-            id: 4,
+            id: "4",
             photos: "https://sobesednik.ru/storage/posts/May2020/tMdmGTA87tWemRUNtmBE.jpg",
             followed: true,
             name: 'Katya',
@@ -92,8 +92,8 @@ export const usersReducer = (state = initialState, action: ActionType) => {
 }
 
 /*action creators которые пользователь UI будут использовать чтобы создовать action*/
-export type FollowACType = { type: typeof FOLLOW, userId: any }           //!!!!to fix any
-export type UnfollowACType = { type: typeof UNFOLLOW, userId: any }
+export type FollowACType = { type: typeof FOLLOW, userId: string }           //!!!!to fix any
+export type UnfollowACType = { type: typeof UNFOLLOW, userId: string }
 export type SetUsersACType = { type: typeof SET_USERS, users: Array<UsersInformationType> }
 
 export const followAC = (userId: any): FollowACType => ({type: FOLLOW, userId})

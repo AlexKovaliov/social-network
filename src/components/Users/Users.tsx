@@ -6,8 +6,8 @@ import userPhoto from "../../assets/images/userPhoto.png"
 
 type UsersComponentsPropsType = {
     users: Array<UsersInformationType>
-    follow: (userId: any) => void,
-    unfollow: (userId: any) => void,
+    follow: (userId: string) => void,
+    unfollow: (userId: string) => void,
     setUsers: (users: Array<UsersInformationType>) => void
 }
 
@@ -64,8 +64,7 @@ export let Users = (props: UsersComponentsPropsType) => {
 
 export class Users extends React.Component<UsersComponentsPropsType> {
 
-    constructor(props: any) {
-        super(props);
+    componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
             this.props.setUsers(response.data.items)
         })
@@ -78,9 +77,8 @@ export class Users extends React.Component<UsersComponentsPropsType> {
                     <span>
                         <div>
                             <img src={u.photos.small !== null ? u.photos.small : userPhoto}
-                                 className={styles.userPhoto}/>
+                                 className={styles.userPhoto} alt="userPhoto"/>
                         </div>
-
                         <div>
                             {u.followed ?
                                 <button onClick={() => {
@@ -92,7 +90,6 @@ export class Users extends React.Component<UsersComponentsPropsType> {
                                 }}>Subscribe</button>}
                         </div>
                     </span>
-
                         <span>
                         <span>
                             <div>{u.name}</div>
@@ -111,4 +108,3 @@ export class Users extends React.Component<UsersComponentsPropsType> {
         )
     }
 }
-

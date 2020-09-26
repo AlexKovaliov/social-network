@@ -10,12 +10,11 @@ import {BrowserRouter, Route} from "react-router-dom"
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 
-type AppPropsType = {
+/*type AppPropsType = {
+    /!*store: StoreType*!/
+}*/
 
-    /*store: StoreType*/
-}
-
-const App = (props: AppPropsType) => {
+const App = (/*props: AppPropsType*/) => {
     /*BrowserRouter должен быть только один, подчиняет себе переключение url*/
     return (
         <BrowserRouter>
