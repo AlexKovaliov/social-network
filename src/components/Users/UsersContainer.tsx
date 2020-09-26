@@ -2,17 +2,27 @@ import React from "react";
 import {Users} from './Users'
 import {connect} from "react-redux";
 import {GlobalStateType} from "../../redux/redux-store";
-import {ActionType, followAC, setUsersAC, unfollowAC, UsersInformationType} from "../../redux/users-reducer";
+import {
+    ActionType,
+    followAC,
+    setCurrentPageAC,
+    setUsersAC, setUsersTotalCountAC,
+    unfollowAC,
+    UsersInformationType
+} from "../../redux/users-reducer";
 
 
 // getting all state of our app
 let mapStateToProps = (state: GlobalStateType) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage
     }
 }
 
-// function for callbacks //!!!!!!!! fix userId: any
+// function for callbacks //!!!!!!!!
 let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
     return {
         follow: (userId: string) => {
@@ -23,7 +33,14 @@ let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
         },
         setUsers: (users: Array<UsersInformationType>) => {
             dispatch(setUsersAC(users))
+        },
+        setCurrentPage: (pageNumber: number) => {
+            dispatch(setCurrentPageAC(pageNumber))
+        },
+        setTotalUsersCount: (totalCount: number) => {
+            dispatch(setUsersTotalCountAC(totalCount))
         }
+
     }
 }
 
