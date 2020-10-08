@@ -33,9 +33,10 @@ export class UsersContainer extends React.Component<UsersContainerPropsType> {
         this.props.toggleIsFetching(true)
         axios.get("https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pagesSize}")
             .then(response => {
+                debugger
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
-                this.props.setUsersTotalCount(response.data.items)
+                this.props.setUsersTotalCount(response.data.totalCount)
             })
     }
 

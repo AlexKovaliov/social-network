@@ -56,8 +56,8 @@ export let Users = (props: UsersType) => {
                         </span>
 
                         <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
+                            <div>{u.location && u.location.country}</div>
+                            <div>{u.location && u.location.city}</div>
                         </span>
                     </span>
             </div>
