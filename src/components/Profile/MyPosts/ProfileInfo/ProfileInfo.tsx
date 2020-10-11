@@ -3,7 +3,7 @@ import s from './ProfileInfo.module.css';
 import {Preloader} from "../../../common/Preloader/Preloader";
 
 type ProfileInfoType = {
-    profile:
+    profile: any       /// need to fix
 }
 
 const ProfileInfo = (props: ProfileInfoType) => {

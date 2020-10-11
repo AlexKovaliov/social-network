@@ -1,5 +1,6 @@
 import {ActionPropsType} from "./store";
 import {PostType} from "../components/Profile/MyPosts/MyPosts";
+import {ProfilePropsType} from "../components/Profile/Profile";
 
 
 const ADD_POST = 'ADD-POST'
@@ -10,7 +11,7 @@ const SET_USER_PROFILE = 'SET-USER-PROFILE'
 export type ProfilePageType = {
     newPostText: string
     posts: Array<PostType>
-    profile: null
+    profile: any /// need to fix
 }
 
 export let initialState: ProfilePageType = {
@@ -18,7 +19,9 @@ export let initialState: ProfilePageType = {
         {id: 1, message: "Hi, how are you?", likesCount: 5},
         {id: 2, message: "It's my first post", likesCount: 23},
     ],
-    newPostText: "it"
+    newPostText: "it",
+
+    profile: {} as ProfilePropsType
 };
 
 
@@ -70,9 +73,9 @@ export const updateNewPostTextActionCreator = (text: string): UpdateNewPostTextA
 
 export type SetUserProfileType = {
     type: typeof SET_USER_PROFILE
-    profile:
+    profile: any /// need to fix
 }
-
-export const setUserProfile = (profile: ): SetUserProfileType => ({type: SET_USER_PROFILE, profile})
+                               /// need to fix
+export const setUserProfile = (profile: any): SetUserProfileType => ({type: SET_USER_PROFILE, profile})
 
 export default profileReducer;

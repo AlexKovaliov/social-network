@@ -2,12 +2,12 @@ import React from 'react';
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-type AppPropsType = {
+export type ProfilePropsType = {
     /*profilePage: ProfilePageType*/
-    profile:
+    profile: any  /// need to fix
 }
 
-const Profile = (props: AppPropsType) => {
+const Profile = (props: ProfilePropsType) => {
 
     return <div>
         <ProfileInfo profile={props.profile}/>
