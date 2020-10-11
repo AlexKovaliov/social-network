@@ -4,11 +4,13 @@ import {PostType} from "../components/Profile/MyPosts/MyPosts";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const SET_USER_PROFILE = 'SET-USER-PROFILE'
 
 
 export type ProfilePageType = {
     newPostText: string
     posts: Array<PostType>
+    profile: null
 }
 
 export let initialState: ProfilePageType = {
@@ -41,6 +43,12 @@ const profileReducer = (state = initialState, action: ActionPropsType) => {
                 newPostText: action.newText
             };
         }
+        case SET_USER_PROFILE: {
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
 
         default:
             return state;
@@ -59,5 +67,12 @@ export type UpdateNewPostTextActionCreatorType = {
 }
 export const updateNewPostTextActionCreator = (text: string): UpdateNewPostTextActionCreatorType =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text})
+
+export type SetUserProfileType = {
+    type: typeof SET_USER_PROFILE
+    profile:
+}
+
+export const setUserProfile = (profile: ): SetUserProfileType => ({type: SET_USER_PROFILE, profile})
 
 export default profileReducer;

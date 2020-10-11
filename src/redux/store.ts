@@ -1,7 +1,8 @@
 import {
     AddPostActionCreatorType,
     ProfilePageType,
-    UpdateNewPostTextActionCreatorType
+    UpdateNewPostTextActionCreatorType,
+    SetUserProfileType
 } from "./profile-reducer";
 import {SendMessageActionCreatorType, UpdateNewMessageBodyActionCreatorType} from "./dialogs-reducer";
 import {DialogItemType} from "../components/Dialogs/DialogItem/DialogsItem";
@@ -41,7 +42,7 @@ export type StoreType = {
 }
 
 export type ActionPropsType = SendMessageActionCreatorType | UpdateNewMessageBodyActionCreatorType
-    | AddPostActionCreatorType | UpdateNewPostTextActionCreatorType
+    | AddPostActionCreatorType | UpdateNewPostTextActionCreatorType | SetUserProfileType
 
 
 // OOP

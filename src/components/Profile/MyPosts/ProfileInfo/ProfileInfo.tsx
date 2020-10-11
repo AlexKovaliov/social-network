@@ -1,13 +1,24 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import {Preloader} from "../../../common/Preloader/Preloader";
 
-const ProfileInfo = () => {
+type ProfileInfoType = {
+    profile:
+}
+
+const ProfileInfo = (props: ProfileInfoType) => {
+    if (!props.profile) {
+        return (
+            <div>
+                <Preloader/>
+            </div>
+        )
+    }
+
     return (
         <div>
             <div className={s.content}>
-                <img
-                    src="https://www.tomfornorthdakota.com/wp-content/uploads/2018/11/wallpaper-for-pc-desktop-free-download-moving-wallpapers-for-desktop-free-download-group-hd-wallpapers.jpg"
-                    alt="top_picture"/>
+                <img src={props.profile.photos.large} alt="photo"/>
             </div>
             <div className={s.descriptionBlock}>
             </div>
