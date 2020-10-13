@@ -28,7 +28,7 @@ const App = (/*props: AppPropsType*/) => {
                     />
 
                     <Route path='/profile/:userId?'
-                           render={() => <ProfileContainer/>}
+                           render={() => <ProfileContainer />}
                     />
                     <Route path='/profile' render={() => <News/>}/>
                     <Route path='/profile' render={() => <Music/>}/>
