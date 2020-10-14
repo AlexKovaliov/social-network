@@ -11,7 +11,19 @@ type StateType = {
     }
 }
 
-class HeaderContainer extends React.Component {
+type HeaderContainerPropsType = {
+    setUserDataAC: (
+        id: string | null,
+        email: string | null,
+        login: string | null,
+        isFetching: boolean
+    ) => void,
+    isAuth: boolean,
+    login: string | null
+}
+
+
+class HeaderContainer extends React.Component<HeaderContainerPropsType> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
             withCredentials: true
