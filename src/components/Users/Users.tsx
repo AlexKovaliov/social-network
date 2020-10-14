@@ -3,7 +3,7 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/userPhoto.png";
 import {UsersInformationType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {SubscribeAPI, UnsubscribeAPI} from "../../api/api";
 
 type UsersType = {
     totalUsersCount: number,
@@ -45,31 +45,19 @@ export let Users = (props: UsersType) => {
                         <div>
                             {u.followed ?
                                 <button onClick={() => {
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/unsubscribe/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "40d9ad0b-5c59-493c-b1f4-22ed9e6cc14c"
+                                    UnsubscribeAPI.unsubscribe(u.id).then(response => {
+                                        if (response.data.resultCode == 0) {
+                                            props.unfollow(u.id)
                                         }
                                     })
-                                        .then(response => {
-                                            if (response.data.resultCode == 0) {
-                                                props.unfollow(u.id)
-                                            }
-                                        })
                                 }}>Unsubscribe
                                 </button>
                                 : <button onClick={() => {
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/subscribe/${u.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "40d9ad0b-5c59-493c-b1f4-22ed9e6cc14c"
+                                    SubscribeAPI.subscribe(u.id).then(response => {
+                                        if (response.data.resultCode == 0) {
+                                            props.follow(u.id)
                                         }
                                     })
-                                        .then(response => {
-                                            if (response.data.resultCode == 0) {
-                                                props.follow(u.id)
-                                            }
-                                        })
                                 }}>Subscribe</button>}
                         </div>
                     </span>
