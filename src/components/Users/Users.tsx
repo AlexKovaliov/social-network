@@ -3,7 +3,7 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/userPhoto.png";
 import {UsersInformationType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {SubscribeAPI, UnsubscribeAPI} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 type UsersType = {
     totalUsersCount: number,
@@ -13,7 +13,7 @@ type UsersType = {
     follow: (userId: string) => void,
     unfollow: (userId: string) => void,
     onPageChanged: (pageNumber: number) => void,
-    toggleFollowingProgress: (isFetching: boolean, id: string) => void
+    followingInProgress: []
 }
 
 export let Users = (props: UsersType) => {
@@ -45,27 +45,13 @@ export let Users = (props: UsersType) => {
                         </div>
                         <div>
                             {u.followed ?
-                                <button disabled={props.toggleFollowingProgress.some(id => id === u.id)}
-                                        onClick={() => {
-                                            props.toggleFollowingProgress(true, u.id)
-                                            UnsubscribeAPI.unsubscribe(u.id).then(response => {
-                                                if (response.data.resultCode == 0) {
-                                                    props.unfollow(u.id)
-                                                }
-                                                props.toggleFollowingProgress(false, u.id)
-                                            })
-                                        }}>Unsubscribe
+                                <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                        onClick={() => {props.unfollow(u.id)}}>
+                                    Unsubscribe
                                 </button>
-                                : <button disabled={props.toggleFollowingProgress.some(id => id === u.id)}
-                                          onClick={() => {
-                                              props.toggleFollowingProgress(true, u.id)
-                                              SubscribeAPI.subscribe(u.id).then(response => {
-                                                  if (response.data.resultCode == 0) {
-                                                      props.follow(u.id)
-                                                  }
-                                                  props.toggleFollowingProgress(false, u.id)
-                                              })
-                                          }}>Subscribe</button>}
+                                : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                                          onClick={() => {props.follow(u.id)}}>
+                                    Subscribe</button>}
                         </div>
                     </span>
                 <span>

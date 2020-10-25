@@ -13,19 +13,13 @@ export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)
-    }
-}
-
-export const UnsubscribeAPI = {
-    unsubscribe(userId: string) {
-        return instance.get(`unsubscribe/${userId}`)
+    },
+    follow(userId: string) {
+        return instance.post(`subscribe/${userId}`)
             .then(response => response.data)
-    }
-}
-
-export const SubscribeAPI = {
-    subscribe(userId: string) {
-        return instance.get(`subscribe/${userId}`)
+    },
+    unfollow(userId: string) {
+        return instance.delete(`unsubscribe/${userId}`)
             .then(response => response.data)
     }
 }
