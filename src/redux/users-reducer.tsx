@@ -24,7 +24,7 @@ export type UsersType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    followingInProgress: []
+    followingInProgress: Array<any>
 }
 
 export type ActionType = FollowACType
@@ -77,7 +77,7 @@ export let initialState: UsersType = {
     followingInProgress: []
 };
 
-export const usersReducer = (state = initialState, action: ActionType) => {
+export const usersReducer = (state: UsersType = initialState, action: ActionType): UsersType => {
 
     switch (action.type) {
         case FOLLOW:
@@ -155,18 +155,15 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: string): To
     isFetching, userId
 })
 
-export const getUsers = (currentPage: number, pageSize: number) => {
-    (dispatch: Dispatch) => {
-
-        dispatch(toggleIsFetching(true));
-
-        usersAPI.getUsers(currentPage, pageSize).then(response => {
-            dispatch(toggleIsFetching(false))
-            dispatch(setUsers(response.data.items))
-            dispatch(setUsersTotalCount(response.data.totalCount))
-        })
-    }
+export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(currentPage, pageSize).then(response => {
+        dispatch(toggleIsFetching(false))
+        dispatch(setUsers(response.data.items))
+        dispatch(setUsersTotalCount(response.data.totalCount))
+    })
 }
+
 
 export const follow = (userId: string) => {
     return (dispatch: Dispatch) => {

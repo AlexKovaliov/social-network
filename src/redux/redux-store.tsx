@@ -1,17 +1,9 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import profileReducer, {ProfilePageType} from "./profile-reducer"
+import profileReducer from "./profile-reducer"
 import dialogsReducer from "./dialogs-reducer"
-import {DialogsPageType} from "./store";
-import {usersReducer, UsersType} from "./users-reducer";
-import {authReducer, AuthType} from "./auth-reducer";
-import thunkMiddleware from 'react-redux'
-
-export type GlobalStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    usersPage: UsersType
-    auth: AuthType
-}
+import {usersReducer} from "./users-reducer";
+import {authReducer} from "./auth-reducer";
+import thunkMiddleware from 'redux-thunk'
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -19,5 +11,7 @@ let reducers = combineReducers({
     usersPage: usersReducer,
     auth: authReducer
 });
+
+export type GlobalStateType = ReturnType<typeof reducers>
 
 export let store = createStore(reducers, applyMiddleware(thunkMiddleware));

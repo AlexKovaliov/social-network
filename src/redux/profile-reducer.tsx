@@ -1,6 +1,8 @@
 import {ActionPropsType} from "./store";
 import {PostType} from "../components/Profile/MyPosts/MyPosts";
 import {ProfilePropsType} from "../components/Profile/Profile";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 
 const ADD_POST = 'ADD-POST'
@@ -25,7 +27,7 @@ export let initialState: ProfilePageType = {
 };
 
 
-const profileReducer = (state = initialState, action: ActionPropsType) => {
+const profileReducer = (state = initialState, action: ActionPropsType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST: {
             let newPost = {
@@ -75,7 +77,15 @@ export type SetUserProfileType = {
     type: typeof SET_USER_PROFILE
     profile: any /// need to fix
 }
-                               /// need to fix
+/// need to fix
 export const setUserProfile = (profile: any): SetUserProfileType => ({type: SET_USER_PROFILE, profile})
+
+export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        })
+}
+
 
 export default profileReducer;

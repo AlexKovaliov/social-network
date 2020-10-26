@@ -3,7 +3,7 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/images/userPhoto.png";
 import {UsersInformationType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
+
 
 type UsersType = {
     totalUsersCount: number,
@@ -13,7 +13,7 @@ type UsersType = {
     follow: (userId: string) => void,
     unfollow: (userId: string) => void,
     onPageChanged: (pageNumber: number) => void,
-    followingInProgress: []
+    followingInProgress: Array<any>
 }
 
 export let Users = (props: UsersType) => {

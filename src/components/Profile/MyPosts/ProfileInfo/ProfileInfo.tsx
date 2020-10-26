@@ -18,7 +18,7 @@ const ProfileInfo = (props: ProfileInfoType) => {
     return (
         <div>
             <div className={s.content}>
-                <img src={props.profile.photos.large} alt="photo"/>
+                <img src={props.profile.photos ? props.profile.photos.large : ''} alt="photo"/>
             </div>
             <div className={s.descriptionBlock}>
             </div>

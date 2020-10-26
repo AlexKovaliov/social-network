@@ -10,6 +10,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 
+
 /*type AppPropsType = {
     /!*store: StoreType*!/
 }*/
@@ -19,7 +20,7 @@ const App = (/*props: AppPropsType*/) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <HeaderContainer/>
+                <HeaderContainer />
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'         // загружает callback котороый в ней передали
