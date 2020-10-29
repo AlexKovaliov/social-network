@@ -5,10 +5,10 @@ const SET_USER_DATA = 'SET_USER_DATA'
 
 
 export type AuthType = {
-    userId: string | null,
-    email: string | null,
-    login: string | null,
-    isFetching: boolean,
+    userId: string | null
+    email: string | null
+    login: string | null
+    isFetching: boolean
     isAuth: boolean
 }
 

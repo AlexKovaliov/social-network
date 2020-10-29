@@ -1,5 +1,5 @@
 import React from 'react';
-import {DialogsPageType, StoreType, RootStateType} from "../../redux/store";
+import {DialogsPageType, StoreType} from "../../redux/store";
 import {
     sendMessageActionCreator,
     updateNewMessageBodyCreator,
@@ -8,6 +8,7 @@ import {
 } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {GlobalStateType} from "../../redux/redux-store";
 
 
 type PropsType = {
@@ -19,9 +20,10 @@ type PropsType = {
 }
 
 
-let mapStateToProps = (state: RootStateType) => {
+let mapStateToProps = (state: GlobalStateType) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 
