@@ -5,6 +5,7 @@ import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {getUserProfile, ProfilePageType} from "../../redux/profile-reducer"
 import {GlobalStateType} from "../../redux/redux-store";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 
 type MDTP = {
@@ -48,21 +49,12 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 }
 
-// HOC
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-
-let mapStateToPropsForRedirect = (state: GlobalStateType): MapStateToPropsForRedirectType => ({
-    isAuth: state.auth.isAuth
-})
-AuthRedirectComponent = connect(mapStateToPropsForRedirect)(AuthRedirectComponent)
-
-
 let mapStateToProps = (state: GlobalStateType): MapStatePropsType => ({
     profile: state.profilePage.profile,
 })
 
-
-
-let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
-
-export default connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent);
+export default compose(
+    connect(mapStateToProps, {getUserProfile}),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer)
