@@ -9,6 +9,7 @@ import {
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {GlobalStateType} from "../../redux/redux-store";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 type PropsType = {
@@ -23,7 +24,6 @@ type PropsType = {
 let mapStateToProps = (state: GlobalStateType) => {
     return {
         dialogsPage: state.dialogsPage,
-        isAuth: state.auth.isAuth
     }
 }
 
@@ -38,7 +38,15 @@ let mapDispatchToProps = (dispatch: (action: UpdateNewMessageBodyActionCreatorTy
     }
 }
 
-const DialogsContainer = connect<any, any, any, any>(mapStateToProps, mapDispatchToProps)(Dialogs);
+// HOC
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+/*
+    if (!props.isAuth) return <Redirect to="/login"/>
+    return <Dialogs {...props}/>
+}
+*/
+
+const DialogsContainer = connect<any, any, any, any>(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
 /*контейнерная компонента всего лишь обвёртка над презентационной компонентой*/
 export default DialogsContainer;

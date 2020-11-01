@@ -10,7 +10,7 @@ export type HeaderPropsType = {
 const Header = (props: HeaderPropsType) => {
     return <header className={s.header}>
         <img
-            src="https://placeitmarketing.s3.amazonaws.com/public/custompages/logo-maker/Esports-Logo-Maker.png"
+            src="https://www.flaticon.com/svg/static/icons/svg/3430/3430129.svg"
             alt="logo"/>
         <div className={s.loginBlock}>
             {props.isAuth ? props.login

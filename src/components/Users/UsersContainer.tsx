@@ -9,6 +9,7 @@ import {
 } from '../../redux/users-reducer';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 type MapStateToPropsType = {
@@ -69,33 +70,8 @@ let mapStateToProps = (state: GlobalStateType): MapStateToPropsType => {
         followingInProgress: state.usersPage.followingInProgress,
     }
 }
-
-
-// function for callbacks //!!!!!!!!
-/*let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
-    return {
-        follow: (userId: string) => {
-            dispatch(follow(userId))
-        },
-        unfollow: (userId: string) => {
-            dispatch(unfollow(userId))
-        },
-        setUsers: (users: Array<UsersInformationType>) => {
-            dispatch(setUsers(users))
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(setCurrentPage(pageNumber))
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setUsersTotalCount(totalCount))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetching(isFetching))
-        }
-    }
-}*/
-
+let withRedirect = withAuthRedirect(UsersContainer)
 export default connect(mapStateToProps, {
     follow: followSuccess, unfollow: unfollowSuccess, setCurrentPage, toggleFollowingProgress,
     getUsers
-})(UsersContainer)
+})(withRedirect)

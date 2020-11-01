@@ -6,7 +6,7 @@ import {DialogsPageType} from "../../redux/store";
 import { Redirect } from 'react-router-dom';
 
 
-type PropsType = {
+export type DialogsPropsType = {
     /* store: StoreType*/
     dialogsPage: DialogsPageType
     sendMessage: () => void
@@ -18,7 +18,7 @@ type PropsType = {
 }
 
 
-const Dialogs = (props: PropsType) => {
+const Dialogs = (props: DialogsPropsType) => {
 
     let state = props.dialogsPage;
 
