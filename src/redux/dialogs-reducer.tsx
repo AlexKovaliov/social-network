@@ -1,12 +1,11 @@
 import {DialogsPageType, ActionPropsType} from "./store";
 
+
+export type DialogActionType = UpdateNewMessageBodyActionCreatorType | SendMessageActionCreatorType
+
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY'
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
-/*type DialogsReducerType = {
-    state: DialogsPageType & MessagesPageType
-    action: ActionPropsType
-}*/
 
 let initialState: DialogsPageType = {
     dialogs: [
@@ -30,7 +29,7 @@ let initialState: DialogsPageType = {
 };
 
 const dialogsReducer =
-    (state = initialState, action: ActionPropsType) => {
+    (state = initialState, action: DialogActionType) => {
 
         switch (action.type) {
 
@@ -52,17 +51,20 @@ const dialogsReducer =
                 return state;
         }
     }
-/* action creators которые пользователь UI будут использовать чтобы создовать action*/
+
+
 export type UpdateNewMessageBodyActionCreatorType = {
     type: typeof UPDATE_NEW_MESSAGE_BODY
     body: string
 }
-export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyActionCreatorType =>
-    ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
-
 export type SendMessageActionCreatorType = {
     type: typeof SEND_MESSAGE
 }
+
+
+export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyActionCreatorType =>
+    ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
 export const sendMessageActionCreator = (): SendMessageActionCreatorType => ({type: SEND_MESSAGE})
+
 
 export default dialogsReducer;

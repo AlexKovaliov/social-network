@@ -24,7 +24,7 @@ const App = (/*props: AppPropsType*/) => {
                 <HeaderContainer />
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/dialogs'         // загружает callback котороый в ней передали
+                    <Route path='/dialogs'         // загружает callback который в ней передали
                            render={() => <DialogsContainer  // route вызывает функцию когда url совпадает
                            />}
                     />
