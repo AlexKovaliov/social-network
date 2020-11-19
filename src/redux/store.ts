@@ -4,7 +4,7 @@ import {
     UpdateNewPostTextActionCreatorType,
     SetUserProfileType
 } from "./profile-reducer";
-import {SendMessageActionCreatorType, UpdateNewMessageBodyActionCreatorType} from "./dialogs-reducer";
+import {SendMessageActionCreatorType} from "./dialogs-reducer";
 import {DialogItemType} from "../components/Dialogs/DialogItem/DialogsItem";
 import { MessageType } from "../components/Dialogs/Message/Message";
 
@@ -21,7 +21,8 @@ export type RootStateType = {
 export type DialogsPageType = {
     dialogs: Array<DialogItemType>
     messages: Array<MessageType>
-    newMessageBody: string
+    newMassageBody: string
+
 }
 
 /*export type MessagesPageType = {
@@ -41,7 +42,7 @@ export type StoreType = {
     dispatch: (action: ActionPropsType) => void
 }
 
-export type ActionPropsType = SendMessageActionCreatorType | UpdateNewMessageBodyActionCreatorType
+export type ActionPropsType = SendMessageActionCreatorType
     | AddPostActionCreatorType | UpdateNewPostTextActionCreatorType | SetUserProfileType
 
 

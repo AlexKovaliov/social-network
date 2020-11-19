@@ -5,20 +5,17 @@ import {usersAPI, profileAPI} from "../api/api";
 
 
 const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_STATUS = 'SET-STATUS'
 
 
 export type ProfilePageType = {
-    newPostText: string
     posts: Array<PostType>
     profile: any /// need to fix
     status: string
 }
 
 export type ProfileActionType = AddPostActionCreatorType
-    | UpdateNewPostTextActionCreatorType
     | SetUserProfileType
     | SetStatusCreatorType
 
@@ -27,7 +24,6 @@ export let initialState: ProfilePageType = {
         {id: 1, message: "Hi, how are you?", likesCount: 5},
         {id: 2, message: "It's my first post", likesCount: 23},
     ],
-    newPostText: "it",
     profile: {} as ProfilePropsType,
     status: ''
 };
@@ -38,7 +34,7 @@ const profileReducer = (state = initialState, action: ProfileActionType): Profil
         case ADD_POST: {
             let newPost = {
                 id: 5,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: 0
             };
             return {
@@ -48,12 +44,6 @@ const profileReducer = (state = initialState, action: ProfileActionType): Profil
             };
         }
 
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
-            };
-        }
         case SET_USER_PROFILE: {
             return {
                 ...state,
@@ -74,10 +64,7 @@ const profileReducer = (state = initialState, action: ProfileActionType): Profil
 
 export type AddPostActionCreatorType = {
     type: typeof ADD_POST
-}
-export type UpdateNewPostTextActionCreatorType = {
-    type: typeof UPDATE_NEW_POST_TEXT
-    newText: string
+    newPostText: string
 }
 export type SetUserProfileType = {
     type: typeof SET_USER_PROFILE
@@ -91,10 +78,7 @@ export type SetStatusCreatorType = {
 
 /*action creators которые пользователь UI будут использовать чтобы создовать action*/
 
-export const addPostActionCreator = (): AddPostActionCreatorType => ({type: ADD_POST})
-
-export const updateNewPostTextActionCreator = (text: string): UpdateNewPostTextActionCreatorType =>
-    ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const addPostActionCreator = (newPostText: string): AddPostActionCreatorType => ({type: ADD_POST, newPostText})
 
 export const setUserProfile = (profile: any): SetUserProfileType => ({type: SET_USER_PROFILE, profile})
 
