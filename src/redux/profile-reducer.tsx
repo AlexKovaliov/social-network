@@ -13,6 +13,7 @@ export type ProfilePageType = {
     posts: Array<PostType>
     profile: any /// need to fix
     status: string
+    newPostText: string
 }
 
 export type ProfileActionType = AddPostActionCreatorType
@@ -25,7 +26,8 @@ export let initialState: ProfilePageType = {
         {id: 2, message: "It's my first post", likesCount: 23},
     ],
     profile: {} as ProfilePropsType,
-    status: ''
+    status: '',
+    newPostText: ''
 };
 
 

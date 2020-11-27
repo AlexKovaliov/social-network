@@ -1,11 +1,10 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css';
 import DialogItem, {DialogItemType} from "./DialogItem/DialogsItem";
 import Message, {MessageType} from "./Message/Message";
 import {DialogsPageType} from "../../redux/store";
 import {Redirect} from 'react-router-dom';
-import Field from "redux-form";
-import reduxForm from "redux-form";
+import { Field, reduxForm } from 'redux-form'
 
 
 export type DialogsPropsType = {

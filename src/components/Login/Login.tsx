@@ -1,5 +1,5 @@
 import React from "react";
-import reduxForm, {Field} from "redux-form";
+import { Field, reduxForm } from 'redux-form'
 
 
 type LoginFormPropsType = {
@@ -7,7 +7,7 @@ type LoginFormPropsType = {
 }
 
                           //??????
-export const LoginForm = (props: LoginFormPropsType) => {
+export const LoginForm: any = (props: LoginFormPropsType) => {
 
     return (
         <form onSubmit={props.handleSubmit}>

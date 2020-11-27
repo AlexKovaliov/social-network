@@ -5,7 +5,8 @@ import {ActionPropsType} from "../../../redux/store";
 import {
     AddPostActionCreatorType
 } from '../../../redux/profile-reducer';
-import reduxForm, {Field} from "redux-form";
+import { Field, reduxForm } from 'redux-form'
+
 
 
 export type  PostType = {
@@ -18,12 +19,12 @@ type MyPostsType = {
     newPostText: string
     posts: Array<PostType>
     dispatch: (action: ActionPropsType | AddPostActionCreatorType) => void
-    addPost: () => void
+    addPost: (newPostText: string) => void
     updateNewPostText: (text: string) => void
 }
 
 
-let AddNewPostForm = (props: any) => {
+let AddNewPostForm: any = (props: any) => {
     return <form onSubmit={props.handleSubmit}>
         <div>
             <Field name='newPostText'

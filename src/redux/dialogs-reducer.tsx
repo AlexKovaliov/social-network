@@ -1,4 +1,4 @@
-import {DialogsPageType, ActionPropsType} from "./store";
+import {DialogsPageType} from "./store";
 
 
 export type DialogActionType = SendMessageActionCreatorType
@@ -24,6 +24,7 @@ let initialState: DialogsPageType = {
         {id: 5, message: "Welcome"},
         {id: 6, message: "Buy"},
     ],
+    newMassageBody: ""
 };
 
 const dialogsReducer =

@@ -1,7 +1,6 @@
 import {
     AddPostActionCreatorType,
     ProfilePageType,
-    UpdateNewPostTextActionCreatorType,
     SetUserProfileType
 } from "./profile-reducer";
 import {SendMessageActionCreatorType} from "./dialogs-reducer";
@@ -43,7 +42,7 @@ export type StoreType = {
 }
 
 export type ActionPropsType = SendMessageActionCreatorType
-    | AddPostActionCreatorType | UpdateNewPostTextActionCreatorType | SetUserProfileType
+    | AddPostActionCreatorType | SetUserProfileType
 
 
 // OOP
