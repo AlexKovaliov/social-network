@@ -5,8 +5,9 @@ import {ActionPropsType} from "../../../redux/store";
 import {
     AddPostActionCreatorType
 } from '../../../redux/profile-reducer';
-import { Field, reduxForm } from 'redux-form'
-
+import {Field, reduxForm} from 'redux-form'
+import {maxLengthCreator, required} from "../../../utils/validators/validators";
+import {Textarea} from "../../common/FormsControls/FormsControls";
 
 
 export type  PostType = {
@@ -23,12 +24,16 @@ type MyPostsType = {
     updateNewPostText: (text: string) => void
 }
 
+const maxLength10 = maxLengthCreator(10)
 
 let AddNewPostForm: any = (props: any) => {
     return <form onSubmit={props.handleSubmit}>
         <div>
             <Field name='newPostText'
-                   component='textarea'/>
+                   component={Textarea}
+                   placeholder={'Post message'}
+                   validate={[required, maxLength10]}
+            />
         </div>
 
         <div>
