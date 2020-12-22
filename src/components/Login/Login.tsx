@@ -6,10 +6,12 @@ import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {GlobalStateType} from "../../redux/redux-store";
+import style from "./../common/FormsControls/FormsControls.module.css"
 
 
 type LoginFormPropsType = {
     handleSubmit: () => void
+    error: string
 }
 
 //??????
@@ -37,7 +39,7 @@ export const LoginForm: any = (props: LoginFormPropsType) => {
             <div>
                 <Field type={"checkbox"} name={"remember me"} component={Input}/> Remember me
             </div>
-
+            {props.error && <div className={style.formSummaryError}>{props.error}</div>}
             <div>
                 <button>Login</button>
             </div>

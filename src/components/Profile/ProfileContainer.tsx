@@ -15,8 +15,7 @@ type MDTP = {
 type MapStatePropsType = {
     profile: ProfilePageType
     status: string
-}
-export type MapStateToPropsForRedirectType = {
+    authorizedUserId: string | null
     isAuth: boolean
 }
 
@@ -30,12 +29,12 @@ type OwnPropsType = MapStatePropsType & MDTP & UpdateStatusType
 type PropsType = RouteComponentProps<PathParamsType> & OwnPropsType
 
 
-class ProfileContainer extends React.Component<PropsType> {
+class ProfileContainer extends React.Component<any> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = "2";
+            userId = this.props.authorizedUserId
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -58,6 +57,8 @@ class ProfileContainer extends React.Component<PropsType> {
 let mapStateToProps = (state: GlobalStateType): MapStatePropsType => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 })
 
 export default compose(
