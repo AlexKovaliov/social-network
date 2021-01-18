@@ -48,8 +48,8 @@ class App extends React.Component<any> {
                         <Route path='/profile' render={() => <News/>}/>
                         <Route path='/profile' render={() => <Music/>}/>
                         <Route path='/profile' render={() => <Settings/>}/>
-                        {<Route path='/users' render={() => <UsersContainer/>}/>}
-                        {<Route path='/login' render={() => <Login/>}/>}
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/login' render={() => <Login/>}/>
                     </div>
                 </div>
             </BrowserRouter>

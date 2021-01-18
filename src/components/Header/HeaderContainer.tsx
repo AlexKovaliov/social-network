@@ -17,10 +17,11 @@ type MDTP = {
     //                 isFetching: boolean, isAuth: boolean) => void
 
     getAuthUserData: () => void
+    logout: () => void
 }
 
 
-type HeaderContainerPropsType = MapStateToPropsType & MDTP & { logout: () => void }
+type HeaderContainerPropsType = MapStateToPropsType & MDTP
 
 
 class HeaderContainer extends React.Component<HeaderContainerPropsType> {
