@@ -63,9 +63,19 @@ let mapStateToProps = (state: GlobalStateType): MapStatePropsType => ({
     authorizedUserId: state.auth.userId,
     isAuth: state.auth.isAuth
 })
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
+let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
+
+export default connect(mapStateToProps, {
+    getUserProfile,
+    getStatus,
+    updateStatus
+})(WithUrlDataContainerComponent)
+
+/*
 export default compose(
     connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     withRouter,
     withAuthRedirect
-)(ProfileContainer)
+)(ProfileContainer)*/

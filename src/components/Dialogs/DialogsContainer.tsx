@@ -34,9 +34,15 @@ let mapDispatchToProps = (dispatch: (action: SendMessageActionCreatorType) => vo
     }
 }
 
-export default compose(
+let AuthRedirectComponent = withAuthRedirect(Dialogs);
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
+
+export default DialogsContainer;
+
+/*export default compose(
     connect(mapStateToProps, mapDispatchToProps),
     withAuthRedirect
-)(Dialogs)
+)(Dialogs)*/
 
 /*контейнерная компонента всего лишь обвёртка над презентационной компонентой*/

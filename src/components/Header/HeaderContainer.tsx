@@ -3,6 +3,7 @@ import Header from "./Header";
 import {connect} from "react-redux";
 import {logout, setUserDataAC, getAuthUserData} from "../../redux/auth-reducer";
 import {GlobalStateType} from "../../redux/redux-store";
+import {Dispatch} from "redux";
 
 
 type MapStateToPropsType = {
@@ -16,7 +17,7 @@ type MDTP = {
     //                 login: string | null,
     //                 isFetching: boolean, isAuth: boolean) => void
 
-    getAuthUserData: () => void
+    getAuthUserData: any
     logout: () => void
 }
 
@@ -39,4 +40,5 @@ const mapStateToProps = (state: GlobalStateType): MapStateToPropsType => ({
     login: state.auth.login,
 })
 
-export default connect(mapStateToProps, {setUserDataAC, logout})(HeaderContainer);
+export default connect(mapStateToProps,
+    {setUserDataAC, logout})(HeaderContainer);
