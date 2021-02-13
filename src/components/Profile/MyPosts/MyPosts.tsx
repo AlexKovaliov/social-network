@@ -2,9 +2,7 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {ActionPropsType} from "../../../redux/store";
-import {
-    AddPostActionCreatorType
-} from '../../../redux/profile-reducer';
+import {AddPostActionCreatorType} from '../../../redux/profile-reducer';
 import {Field, reduxForm} from 'redux-form'
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormsControls";
@@ -44,12 +42,10 @@ let AddNewPostForm: any = (props: any) => {
 
 AddNewPostForm = reduxForm({form: 'ProfileAddNewPostForm'})(AddNewPostForm)
 
-const MyPosts = (props: MyPostsType) => {
+const MyPosts = React.memo((props: MyPostsType) => {
 
-    const postsElement =
-        props.posts.map(p =>
-            <Post message={p.message} likesCount={p.likesCount}/>)
-
+    const postsElement = props.posts.map(p =>
+        <Post message={p.message} likesCount={p.likesCount}/>)
 
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
@@ -68,6 +64,6 @@ const MyPosts = (props: MyPostsType) => {
             </div>
         </div>
     )
-}
+});
 
 export default MyPosts
