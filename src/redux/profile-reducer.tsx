@@ -7,6 +7,7 @@ import {usersAPI, profileAPI} from "../api/api";
 const ADD_POST = 'ADD-POST'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
 const SET_STATUS = 'SET-STATUS'
+const DELETE_POST = 'DELETE-POST'
 
 
 export type ProfilePageType = {
@@ -19,6 +20,7 @@ export type ProfilePageType = {
 export type ProfileActionType = AddPostActionCreatorType
     | SetUserProfileType
     | SetStatusCreatorType
+    | DeletePostCreatorType
 
 export let initialState: ProfilePageType = {
     posts: [
@@ -58,6 +60,12 @@ const profileReducer = (state = initialState, action: ProfileActionType): Profil
                 status: action.status
             }
         }
+        case DELETE_POST: {
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id != action.postId)
+            }
+        }
 
         default:
             return state;
@@ -76,6 +84,10 @@ export type SetStatusCreatorType = {
     type: typeof SET_STATUS
     status: string
 }
+export type DeletePostCreatorType = {
+    type: typeof DELETE_POST
+    postId: number
+}
 
 
 /*action creators которые пользователь UI будут использовать чтобы создовать action*/
@@ -86,6 +98,7 @@ export const setUserProfile = (profile: any): SetUserProfileType => ({type: SET_
 
 export const setStatus = (status: string): SetStatusCreatorType => ({type: SET_STATUS, status})
 
+export const deletePost = (postId: number): DeletePostCreatorType => ({type: DELETE_POST, postId})
 // thunks
 export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
     usersAPI.getProfile(userId)
