@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import {Preloader} from "../../../common/Preloader/Preloader";
 import {ProfileStatus} from './ProfileStatus'
+import {ProfilePageType} from "../../../../redux/profile-reducer";
 
 type ProfileInfoType = {
     profile: any       /// need to fix
@@ -9,8 +10,8 @@ type ProfileInfoType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileInfo = (props: ProfileInfoType) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}: ProfileInfoType) => {
+    if (!profile) {
         return (
             <div>
                 <Preloader/>
@@ -21,12 +22,11 @@ const ProfileInfo = (props: ProfileInfoType) => {
     return (
         <div>
             <div className={s.content}>
-                <img src={props.profile.photos ? props.profile.photos.large : ''} alt="photo"/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <img src={profile.photos ? profile.photos.large : ''} alt="photo"/>
+                <ProfileStatus status={status} updateStatus={updateStatus}/>
             </div>
             <div className={s.descriptionBlock}>
             </div>
-
         </div>
     )
 }

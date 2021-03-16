@@ -5,7 +5,7 @@ import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {getStatus, getUserProfile, ProfilePageType, updateStatus} from "../../redux/profile-reducer"
 import {GlobalStateType} from "../../redux/redux-store";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
-import {compose} from "redux";
+
 
 
 type MDTP = {
