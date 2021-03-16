@@ -100,27 +100,21 @@ export const setStatus = (status: string): SetStatusCreatorType => ({type: SET_S
 
 export const deletePost = (postId: number): DeletePostCreatorType => ({type: DELETE_POST, postId})
 // thunks
-export const getUserProfile = (userId: string) => (dispatch: Dispatch) => {
-    usersAPI.getProfile(userId)
-        .then(response => {
-            dispatch(setUserProfile(response.data))
-        })
+export const getUserProfile = (userId: string) => async (dispatch: Dispatch) => {
+    let response = await usersAPI.getProfile(userId);
+    dispatch(setUserProfile(response.data))
 }
 
-export const getStatus = (status: string) => (dispatch: Dispatch) => {
-    profileAPI.getStatus(status)
-        .then(response => {
-            dispatch(setUserProfile(response.data))
-        })
+export const getStatus = (status: string) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.getStatus(status);
+    dispatch(setUserProfile(response.data))
 }
 
-export const updateStatus = (status: string) => (dispatch: Dispatch) => {
-    profileAPI.updateStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setUserProfile(response.data))
-            }
-        })
+export const updateStatus = (status: string) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode === 0) {
+        dispatch(setUserProfile(response.data))
+    }
 }
 
 

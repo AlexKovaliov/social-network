@@ -14,11 +14,11 @@ type LoginFormPropsType = {
     error: string
 }
 
-//??????
-export const LoginForm: any = (props: LoginFormPropsType) => {
+
+export const LoginForm: any = ({handleSubmit, error}: LoginFormPropsType) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field placeholder={"Email"}
                        name={"email"}
@@ -39,7 +39,7 @@ export const LoginForm: any = (props: LoginFormPropsType) => {
             <div>
                 <Field type={"checkbox"} name={"remember me"} component={Input}/> Remember me
             </div>
-            {props.error && <div className={style.formSummaryError}>{props.error}</div>}
+            {error && <div className={style.formSummaryError}>{error}</div>}
             <div>
                 <button>Login</button>
             </div>

@@ -41,4 +41,4 @@ const mapStateToProps = (state: GlobalStateType): MapStateToPropsType => ({
 })
 
 export default connect(mapStateToProps,
-    {setUserDataAC, logout})(HeaderContainer);
+    {setUserDataAC, logout: logout})(HeaderContainer);
